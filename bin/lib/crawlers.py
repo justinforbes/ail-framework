@@ -2369,9 +2369,6 @@ def recrawl_onion_domains(date_month=None, all_onions_up=False):  # TODO RENAME 
 
 def recrawl_onion_domains_down_this_month(date_month=None):
     """Resend all onion domains marked as down this month to the crawler queue."""
-    if not date_month:
-        date_month = Date.get_date_str_month()
-
     onion_domains = set()
     for date in Date.get_month_dates(date=date_month):
         onion_domains.update(r_crawler.smembers(f'onion_down:{date}'))
